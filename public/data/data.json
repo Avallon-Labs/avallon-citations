@@ -1,0 +1,2260 @@
+{
+  "sources": [
+    {
+      "id": "aoe-coe-investigation-report",
+      "name": "AOE_COE Investigation Report",
+      "file": "/data/AOE_COE Investigation Report.pdf",
+      "pageCount": 2
+    },
+    {
+      "id": "adjuster-activity-log-claim-notes",
+      "name": "Adjuster Activity Log _Claim Notes",
+      "file": "/data/Adjuster Activity Log _Claim Notes.pdf",
+      "pageCount": 2
+    },
+    {
+      "id": "benefits-reserves-financial-summary",
+      "name": "Benefits, Reserves & Financial Summary",
+      "file": "/data/Benefits, Reserves & Financial Summary.pdf",
+      "pageCount": 2
+    },
+    {
+      "id": "claim-metadata-snapshot",
+      "name": "Claim Metadata Snapshot",
+      "file": "/data/Claim Metadata Snapshot.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "coverage-and-employment-verification",
+      "name": "Coverage and Employment Verification",
+      "file": "/data/Coverage and Employment Verification.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "doctor-s-first-report-of-occupational-injury-or-illness",
+      "name": "Doctor_s First Report of Occupational Injury or Illness",
+      "file": "/data/Doctor_s First Report of Occupational Injury or Illness.pdf",
+      "pageCount": 2
+    },
+    {
+      "id": "employer-s-report-of-injury-or-illness",
+      "name": "Employer_s Report of Injury or Illness",
+      "file": "/data/Employer_s Report of Injury or Illness.pdf",
+      "pageCount": 2
+    },
+    {
+      "id": "employment-status-and-separation-snapshot",
+      "name": "Employment Status and Separation Snapshot",
+      "file": "/data/Employment Status and Separation Snapshot.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "employment-and-wage-verification",
+      "name": "Employment and Wage Verification",
+      "file": "/data/Employment and Wage Verification.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "excess-and-buffer-layer-coverage-summary",
+      "name": "Excess and Buffer Layer Coverage Summary",
+      "file": "/data/Excess and Buffer Layer Coverage Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "form-041",
+      "name": "Form-041",
+      "file": "/data/Form-041.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "iso-eams-and-prior-claims-summary",
+      "name": "ISO _ EAMS and Prior Claims Summary",
+      "file": "/data/ISO _ EAMS and Prior Claims Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "liens-and-expected-liens-summary",
+      "name": "Liens and Expected Liens Summary",
+      "file": "/data/Liens and Expected Liens Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "litigation-and-representation-summary",
+      "name": "Litigation and Representation Summary",
+      "file": "/data/Litigation and Representation Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "medical-status-and-treating-physician-snapshot",
+      "name": "Medical Status and Treating Physician Snapshot",
+      "file": "/data/Medical Status and Treating Physician Snapshot.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "medical-treatment-ledger",
+      "name": "Medical Treatment Ledger",
+      "file": "/data/Medical Treatment Ledger.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "medicare-beneficiary-and-msa-status",
+      "name": "Medicare Beneficiary and MSA Status",
+      "file": "/data/Medicare Beneficiary and MSA Status.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "notice-of-acceptance-of-claim",
+      "name": "Notice of Acceptance of Claim",
+      "file": "/data/Notice of Acceptance of Claim.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "notice-of-partial-denial-of-claim",
+      "name": "Notice of Partial Denial of Claim",
+      "file": "/data/Notice of Partial Denial of Claim.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "ortho-ame-summary-and-pd-worksheet",
+      "name": "Ortho AME Summary and PD Worksheet",
+      "file": "/data/Ortho AME Summary and PD Worksheet.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "permanent-modified-duty-job-offer",
+      "name": "Permanent Modified Duty Job Offer",
+      "file": "/data/Permanent Modified Duty Job Offer.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "plan-of-action-and-next-review-date",
+      "name": "Plan_of_Action and Next Review Date",
+      "file": "/data/Plan_of_Action and Next Review Date.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "psych-qme-summary",
+      "name": "Psych QME Summary",
+      "file": "/data/Psych QME Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "settlement-status-and-negotiations",
+      "name": "Settlement Status and Negotiations",
+      "file": "/data/Settlement Status and Negotiations.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "subrogation-and-contribution-reimbursement-summary",
+      "name": "Subrogation and Contribution _ Reimbursement Summary",
+      "file": "/data/Subrogation and Contribution _ Reimbursement Summary.pdf",
+      "pageCount": 1
+    },
+    {
+      "id": "td-pd-benefit-payment-history",
+      "name": "TD _ PD Benefit Payment History",
+      "file": "/data/TD _ PD Benefit Payment History.pdf",
+      "pageCount": 1
+    }
+  ],
+  "fields": [
+    {
+      "id": "f1",
+      "label": "Filed Liens",
+      "value": "None",
+      "citations": [
+        {
+          "sourceId": "liens-and-expected-liens-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.045455
+          }
+        }
+      ],
+      "category": "Liens"
+    },
+    {
+      "id": "f2",
+      "label": "Expected Liens",
+      "value": "No expected liens. EDD confirmed no SDI benefits paid for TTD period; all treatment within MPN and paid timely with no outstanding medical provider balances.",
+      "citations": [
+        {
+          "sourceId": "liens-and-expected-liens-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.34596,
+            "width": 0.861111,
+            "height": 0.207702
+          }
+        },
+        {
+          "sourceId": "liens-and-expected-liens-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.34596,
+            "width": 0.861111,
+            "height": 0.207702
+          }
+        }
+      ],
+      "category": "Liens"
+    },
+    {
+      "id": "f3",
+      "label": "Date",
+      "value": "12/05/2025",
+      "citations": [
+        {
+          "sourceId": "claim-metadata-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.133207
+          }
+        }
+      ],
+      "category": "Metadata"
+    },
+    {
+      "id": "f4",
+      "label": "Examiner",
+      "value": "Jordan Peters",
+      "citations": [
+        {
+          "sourceId": "claim-metadata-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.133207
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.140783,
+            "width": 0.297386,
+            "height": 0.010732
+          }
+        }
+      ],
+      "category": "Metadata"
+    },
+    {
+      "id": "f5",
+      "label": "Description",
+      "value": "Current reserves (as of 06/20/2025): Medical $20,000; Indemnity $15,000; Expense $8,500. Initial reserves (10/10/2024) set at Medical $18,000; Indemnity $8,000; Expense $3,500. Increased 03/15/2025 to Medical $35,000; Indemnity $15,000; Expense $7,500 post-surgery for extended TTD and AME/QME costs. Reduced 06/20/2025 post-MMI/AME for limited future medical and PD advances. Total incurred approximately $43,500 with about $32,780 paid as of 12/05/2025.",
+      "citations": [
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.184343,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        },
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.184343,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.068813,
+            "width": 0.493464,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Reserves"
+    },
+    {
+      "id": "f6",
+      "label": "Adj Number",
+      "value": "ADJ to be assigned",
+      "citations": [
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.116162
+          }
+        },
+        {
+          "sourceId": "iso-eams-and-prior-claims-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.137626,
+            "width": 0.861111,
+            "height": 0.128788
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f7",
+      "label": "Is Litigated",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.548611,
+            "width": 0.172386,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.116162
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f8",
+      "label": "Legal Activity",
+      "value": "Application for Adjudication filed 11/2024-01/2025. Psych QME completed 03/20/2025 (Dr. Singh). Ortho AME exam 05/30/2025 (Dr. Chen). DOR for Rating MSC filed mid-2025. MSC scheduled for early 2026 to address PD rating disputes and settlement.",
+      "citations": [
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.28851,
+            "width": 0.861111,
+            "height": 0.222222
+          }
+        },
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.28851,
+            "width": 0.861111,
+            "height": 0.222222
+          }
+        },
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.28851,
+            "width": 0.861111,
+            "height": 0.222222
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f9",
+      "label": "Defense Attorney",
+      "value": "Roberts & Hill, LLP",
+      "citations": [
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.116162
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f10",
+      "label": "Applicant Attorney",
+      "value": "Maria Perez, Esq., Law Offices of Maria Perez",
+      "citations": [
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.116162
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.537247,
+            "width": 0.658497,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f11",
+      "label": "Application Filed Date",
+      "value": "11/2024-01/2025",
+      "citations": [
+        {
+          "sourceId": "litigation-and-representation-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.28851,
+            "width": 0.861111,
+            "height": 0.222222
+          }
+        }
+      ],
+      "category": "Litigation"
+    },
+    {
+      "id": "f12",
+      "label": "Is Mmi",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.856692,
+            "width": 0.759804,
+            "height": 0.032197
+          }
+        },
+        {
+          "sourceId": "medical-status-and-treating-physician-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328914,
+            "width": 0.861111,
+            "height": 0.080177
+          }
+        }
+      ],
+      "category": "MMI Status"
+    },
+    {
+      "id": "f13",
+      "label": "Mmi Date",
+      "value": "04/10/2025",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.856692,
+            "width": 0.759804,
+            "height": 0.032197
+          }
+        },
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.512626,
+            "width": 0.861111,
+            "height": 0.15404
+          }
+        }
+      ],
+      "category": "MMI Status"
+    },
+    {
+      "id": "f14",
+      "label": "Mmi Details",
+      "value": "PTP Dr. Nguyen declared P&S/MMI as of 04/10/2025 with residual lumbar and left knee impairment. Left hip resolved without ratable impairment. Confirmed by Ortho AME Dr. Chen.",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.856692,
+            "width": 0.759804,
+            "height": 0.032197
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.856692,
+            "width": 0.759804,
+            "height": 0.032197
+          }
+        }
+      ],
+      "category": "MMI Status"
+    },
+    {
+      "id": "f15",
+      "label": "Negotiations",
+      "value": "Active settlement discussions underway. Applicant's global demand approximately mid-$40,000 range for lump-sum resolution including PD and closure of future medical on lumbar and left knee. Defense offers approximately mid-$20,000 range for moderate C&R, valuing PD consistent with low-to-mid-teens rating and limited future medical exposure.",
+      "citations": [
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.232323,
+            "width": 0.861111,
+            "height": 0.094066
+          }
+        },
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.232323,
+            "width": 0.861111,
+            "height": 0.094066
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.167929,
+            "width": 0.689542,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Settlement"
+    },
+    {
+      "id": "f16",
+      "label": "Settlement Type",
+      "value": "C&R",
+      "citations": [
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.059343
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.167929,
+            "width": 0.689542,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Settlement"
+    },
+    {
+      "id": "f17",
+      "label": "Authority Status",
+      "value": "Internal authority based on mid-teens PD range and conservative future medical has been requested/updated following AME report. Final authority to be aligned with any formal DEU rating once issued.",
+      "citations": [
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.363636,
+            "width": 0.861928,
+            "height": 0.147096
+          }
+        }
+      ],
+      "category": "Settlement"
+    },
+    {
+      "id": "f18",
+      "label": "Settlement Notes",
+      "value": "Outstanding items: awaiting final DEU rating, confirmation of ongoing accommodation of permanent work restrictions, updated lien status, and confirmation that no further med-legal specialties are needed. Additional PD exposure remains reserved pending DEU formal rating and final settlement structure.",
+      "citations": [
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.363636,
+            "width": 0.861928,
+            "height": 0.147096
+          }
+        },
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.556187,
+            "width": 0.834967,
+            "height": 0.024621
+          }
+        }
+      ],
+      "category": "Settlement"
+    },
+    {
+      "id": "f19",
+      "label": "Postured For Settlement",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "settlement-status-and-negotiations",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.861928,
+            "height": 0.059343
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.167929,
+            "width": 0.689542,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Settlement"
+    },
+    {
+      "id": "f20",
+      "label": "Msa Details",
+      "value": "WCMSA is not indicated. Claimant age 37, non-Medicare beneficiary, no reasonable expectation of Medicare entitlement within 30 months. Future medical modest and consists of conservative care for lumbar spine and left knee. Internal classification: Not Medicare Eligible; MIR not reportable. No MSA submission to CMS planned or required.",
+      "citations": [
+        {
+          "sourceId": "medicare-beneficiary-and-msa-status",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.34154,
+            "width": 0.861928,
+            "height": 0.107323
+          }
+        },
+        {
+          "sourceId": "medicare-beneficiary-and-msa-status",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.34154,
+            "width": 0.861928,
+            "height": 0.107323
+          }
+        }
+      ],
+      "category": "Medicare / MSA"
+    },
+    {
+      "id": "f21",
+      "label": "Is Beneficiary",
+      "value": "No",
+      "citations": [
+        {
+          "sourceId": "medicare-beneficiary-and-msa-status",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.080808
+          }
+        }
+      ],
+      "category": "Medicare / MSA"
+    },
+    {
+      "id": "f22",
+      "label": "Reasonable Expectation",
+      "value": "No evidence that Ms. Moore is reasonably expected to become Medicare-eligible within 30 months of any anticipated settlement. She is under 65 years old, not on SSDI, and does not appear to be in the SSDI application pipeline.",
+      "citations": [
+        {
+          "sourceId": "medicare-beneficiary-and-msa-status",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.254419,
+            "width": 0.861111,
+            "height": 0.049874
+          }
+        }
+      ],
+      "category": "Medicare / MSA"
+    },
+    {
+      "id": "f23",
+      "label": "Notes",
+      "value": "Ortho AME Dr. Chen: Lumbar spine 70% industrial to current DOI, 30% to prior 2018 industrial lumbar injury and underlying degenerative changes. Left knee 100% industrial to current DOI with no prior industrial left knee injury documented.",
+      "citations": [
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.432449,
+            "width": 0.861111,
+            "height": 0.094066
+          }
+        },
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.432449,
+            "width": 0.861111,
+            "height": 0.094066
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.92298,
+            "width": 0.603758,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Apportionment"
+    },
+    {
+      "id": "f24",
+      "label": "Status",
+      "value": "Partially Accepted",
+      "citations": [
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.069048,
+            "top": 0.650444,
+            "width": 0.860433,
+            "height": 0.082317
+          }
+        },
+        {
+          "sourceId": "notice-of-acceptance-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.558081,
+            "width": 0.838235,
+            "height": 0.020202
+          }
+        }
+      ],
+      "category": "Compensability"
+    },
+    {
+      "id": "f25",
+      "label": "Decision Due Date",
+      "value": "12/11/2024",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.603535,
+            "width": 0.305556,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.069048,
+            "top": 0.650444,
+            "width": 0.860433,
+            "height": 0.082317
+          }
+        }
+      ],
+      "category": "Compensability"
+    },
+    {
+      "id": "f26",
+      "label": "Decision Rationale",
+      "value": "Accepted lumbar spine, left hip, left knee based on consistent mechanism supported by employer/medical records and MRI confirmation of medial meniscus tear. Denied right shoulder - not documented until 4+ weeks post-injury, absent from initial records, imaging showed no acute structural injury, AME unable to link to industrial event. Denied psychological - Psych QME found <10% industrial contribution with predominant pre-existing causes, below compensable threshold.",
+      "citations": [
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068431,
+            "top": 0.454105,
+            "width": 0.862201,
+            "height": 0.161233
+          }
+        },
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068431,
+            "top": 0.454105,
+            "width": 0.862201,
+            "height": 0.161233
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.361111,
+            "width": 0.54085,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Compensability"
+    },
+    {
+      "id": "f27",
+      "label": "Notes",
+      "value": "Given the moderate orthopedic nature of the claim and low projected PD, no scenario is anticipated where this claim approaches excess attachment. Excess and buffer statuses should be reconfirmed only if unexpected catastrophic developments occur.",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.417929,
+            "width": 0.754085,
+            "height": 0.024621
+          }
+        }
+      ],
+      "category": "Excess Carrier"
+    },
+    {
+      "id": "f28",
+      "label": "Retention",
+      "value": "$500,000",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.137626
+          }
+        },
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 2,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.3125,
+            "width": 0.75,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Excess Carrier"
+    },
+    {
+      "id": "f29",
+      "label": "Carrier Name",
+      "value": "Safety National Casualty Corporation",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.137626
+          }
+        },
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 2,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.3125,
+            "width": 0.75,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Excess Carrier"
+    },
+    {
+      "id": "f30",
+      "label": "Is Reportable",
+      "value": "No",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.137626
+          }
+        }
+      ],
+      "category": "Excess Carrier"
+    },
+    {
+      "id": "f31",
+      "label": "Reporting Level",
+      "value": "$250,000",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.137626
+          }
+        }
+      ],
+      "category": "Excess Carrier"
+    },
+    {
+      "id": "f32",
+      "label": "Notes",
+      "value": "ISO/EAMS searches (09/24/2024, updated 11/12/2024) confirm two prior WC claims: 2018 lumbar with Sunrise House (ADJ12123456, 10% PD Stip Award later C&R'd 09/15/2023); 2021 left ankle medical-only with current employer (ADJ14987654, closed 12/31/2021 no PD). One non-industrial auto claim 2020 with neck/back soft tissue resolved by third-party carrier. No additional CA WC claims under current SSN/DOB.",
+      "citations": [
+        {
+          "sourceId": "iso-eams-and-prior-claims-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.287247,
+            "width": 0.258987,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "iso-eams-and-prior-claims-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.137626,
+            "width": 0.861111,
+            "height": 0.128788
+          }
+        }
+      ],
+      "category": "ISO / EAMS Notes"
+    },
+    {
+      "id": "f33",
+      "label": "Mpn Hcn Status",
+      "value": "All treatment has occurred within the Anthem Blue Cross Workers' Compensation MPN, including PrimeCare Occupational Health (Riverside) and Riverside Orthopedic Medical Group.",
+      "citations": [
+        {
+          "sourceId": "medical-status-and-treating-physician-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.137626,
+            "width": 0.862186,
+            "height": 0.049575
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f34",
+      "label": "Last Visit Date",
+      "value": "07/15/2025",
+      "citations": [
+        {
+          "sourceId": "medical-status-and-treating-physician-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328914,
+            "width": 0.861111,
+            "height": 0.080177
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f35",
+      "label": "Next Appointment",
+      "value": "None scheduled; follow-up on an as-needed (PRN) basis for flare-ups or new symptoms within future medical parameters.",
+      "citations": [
+        {
+          "sourceId": "medical-status-and-treating-physician-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328914,
+            "width": 0.861111,
+            "height": 0.080177
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f36",
+      "label": "Treatment Summary",
+      "value": "09/13/2024 initial PrimeCare visit with lumbar/left knee X-rays (negative fracture, mild degenerative changes). 10/12/2024 left knee MRI showed complex medial meniscus tear. 11/05/2024 lumbar MRI showed mild disc protrusions L4-5/L5-S1. 11/18/2024 ortho consult Dr. Patel recommended knee arthroscopy. 01/10/2025 left knee arthroscopic partial medial meniscectomy and chondroplasty completed. 02/01-05/01/2025 18 PT sessions for left knee and lumbar stabilization. 04/10/2025 P&S/MMI evaluation. 07/15/2025 follow-up confirming stable MMI.",
+      "citations": [
+        {
+          "sourceId": "medical-treatment-ledger",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.374369
+          }
+        },
+        {
+          "sourceId": "medical-treatment-ledger",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.374369
+          }
+        },
+        {
+          "sourceId": "medical-treatment-ledger",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.374369
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f37",
+      "label": "Medical Legal Evaluations",
+      "value": "03/20/2025 Psych QME Dr. Rachel Singh, PhD - found <10% industrial contribution, psych not compensable. 05/30/2025 Ortho AME Dr. David Chen, MD - confirmed AOE/COE for lumbar and left knee, apportioned lumbar 70/30, left knee 100% industrial, denied right shoulder as industrial.",
+      "citations": [
+        {
+          "sourceId": "medical-treatment-ledger",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.547348,
+            "width": 0.862745,
+            "height": 0.090278
+          }
+        },
+        {
+          "sourceId": "medical-treatment-ledger",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.547348,
+            "width": 0.862745,
+            "height": 0.090278
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.911616,
+            "width": 0.650327,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f38",
+      "label": "Primary Treating Physician",
+      "value": "Laura Nguyen, M.D., Occupational Medicine, PrimeCare Occupational Health, Riverside, CA",
+      "citations": [
+        {
+          "sourceId": "medical-status-and-treating-physician-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.223485,
+            "width": 0.861072,
+            "height": 0.067843
+          }
+        },
+        {
+          "sourceId": "doctor-s-first-report-of-occupational-injury-or-illness",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.306818,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        }
+      ],
+      "category": "Medical Status"
+    },
+    {
+      "id": "f39",
+      "label": "Action Items",
+      "value": "Continue PD advances pending DEU rating and/or settlement. Confirm employer continues to accommodate permanent restrictions and no job changes affect SJDB entitlement. Work with defense counsel to prepare for rating MSC and potential resolution via Stipulated Award or C&R.",
+      "citations": [
+        {
+          "sourceId": "plan-of-action-and-next-review-date",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.401515
+          }
+        },
+        {
+          "sourceId": "plan-of-action-and-next-review-date",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.401515
+          }
+        }
+      ],
+      "category": "Plan of Action"
+    },
+    {
+      "id": "f40",
+      "label": "Next Poa Date",
+      "value": "02/01/2026",
+      "citations": [
+        {
+          "sourceId": "plan-of-action-and-next-review-date",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.575126,
+            "width": 0.85866,
+            "height": 0.037879
+          }
+        }
+      ],
+      "category": "Plan of Action"
+    },
+    {
+      "id": "f41",
+      "label": "Next Poa Draft",
+      "value": "Next POA 02/01/2026: 1) Obtain and review formal DEU rating on lumbar spine and left knee, accounting for 30% apportionment on lumbar per Labor Code \u00a74663-4664. 2) Reconcile PD advances paid ($290/week since 07/10/2025) against final rating and confirm credit application per \u00a74650. 3) Finalize settlement structure (Stipulated Award under \u00a75100-5103 or C&R under \u00a75001) based on DEU rating, future medical exposure per \u00a75500.5, and applicant/defense positions. 4) If Stip Award, ensure PD payments comply with \u00a74658-4661; if C&R, obtain WCAB approval per \u00a75001 and confirm Medicare/lien compliance. 5) Verify employer's permanent modified duty offer remains valid and SJDB voucher ($6,000 under \u00a74658.7) is not triggered. 6) Coordinate with defense counsel for MSC preparation, including updated \u00a75502(c)(1) pre-trial conference statement. 7) Confirm no new medical treatment requests that would require UR under \u00a74610 or IMR under \u00a74610.5-4610.6.",
+      "citations": [
+        {
+          "sourceId": "plan-of-action-and-next-review-date",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.575126,
+            "width": 0.85866,
+            "height": 0.037879
+          }
+        }
+      ],
+      "category": "Plan of Action"
+    },
+    {
+      "id": "f42",
+      "label": "State Regulations",
+      "value": "California",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.424242,
+            "width": 0.861111,
+            "height": 0.066919
+          }
+        },
+        {
+          "sourceId": "doctor-s-first-report-of-occupational-injury-or-illness",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.306818,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        }
+      ],
+      "category": "Plan of Action"
+    },
+    {
+      "id": "f43",
+      "label": "Prior Claims",
+      "value": "(1) Claim Number: SH-18-00421 / ADJ12123456; Date Of Injury: 03/05/2018; Body Parts: Lumbar spine (low back); Status: Closed; Pd Rating: 10% PD; Settlement Info: Stipulated Award for 10% PD with open future medical; later C&R of future medical approved 09/15/2023, closing case in full | (2) Claim Number: 21002389 / ADJ14987654; Date Of Injury: 02/11/2021; Body Parts: Left ankle; Status: Closed; Settlement Info: Medical-only strain/sprain resolved with conservative care; closed administratively 12/31/2021; no PD, no litigation",
+      "citations": [
+        {
+          "sourceId": "iso-eams-and-prior-claims-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.302399,
+            "width": 0.861111,
+            "height": 0.133838
+          }
+        },
+        {
+          "sourceId": "iso-eams-and-prior-claims-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.302399,
+            "width": 0.861111,
+            "height": 0.133838
+          }
+        }
+      ],
+      "category": "Existing Claims"
+    },
+    {
+      "id": "f44",
+      "label": "Status",
+      "value": "Active",
+      "citations": [
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.427399,
+            "width": 0.861111,
+            "height": 0.047348
+          }
+        },
+        {
+          "sourceId": "employment-and-wage-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.111111
+          }
+        }
+      ],
+      "category": "Employment Status"
+    },
+    {
+      "id": "f45",
+      "label": "Employment Notes",
+      "value": "Regular full-time employee working 40 hours/week on rotating shifts including evenings and weekends. Post-injury: 09/13/2024-02/29/2025 medical leave (TTD). 03/01/2025-05/14/2025 modified duty (desk-based). From 05/15/2025 full duty within permanent restrictions, primarily first-floor assignment.",
+      "citations": [
+        {
+          "sourceId": "employment-and-wage-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.111111
+          }
+        },
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.128788
+          }
+        },
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.128788
+          }
+        }
+      ],
+      "category": "Employment Status"
+    },
+    {
+      "id": "f46",
+      "label": "Body Parts",
+      "value": "Lumbar spine/low back (lumbar strain with pre-existing degenerative disc disease), left hip (left hip strain), left knee (left knee contusion/internal derangement including medial meniscus tear)",
+      "citations": [
+        {
+          "sourceId": "notice-of-acceptance-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328283,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        },
+        {
+          "sourceId": "notice-of-acceptance-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328283,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        },
+        {
+          "sourceId": "notice-of-acceptance-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.328283,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        }
+      ],
+      "category": "Accepted Body Parts"
+    },
+    {
+      "id": "f47",
+      "label": "Coverage Notes",
+      "value": "No disputes raised regarding coverage or employment as of the latest review (12/05/2025).",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.556818,
+            "width": 0.591503,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Coverage & Employment"
+    },
+    {
+      "id": "f48",
+      "label": "Coverage Confirmed",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.137626,
+            "width": 0.861111,
+            "height": 0.123106
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.239899,
+            "width": 0.744281,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Coverage & Employment"
+    },
+    {
+      "id": "f49",
+      "label": "Employee Confirmed",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.424242,
+            "width": 0.861111,
+            "height": 0.066919
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.261995,
+            "width": 0.470588,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Coverage & Employment"
+    },
+    {
+      "id": "f50",
+      "label": "Member Effective Date",
+      "value": "01/01/2017",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.137626,
+            "width": 0.861111,
+            "height": 0.123106
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.251263,
+            "width": 0.431373,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Coverage & Employment"
+    },
+    {
+      "id": "f51",
+      "label": "Work Status",
+      "value": "Full duty within permanent restrictions effective 05/15/2025. Restrictions include: avoid lifting/pushing/pulling >40 lbs occasionally or >25 lbs frequently; avoid repetitive bending/stooping/squatting >1/3 shift; limit stair use to occasional; no direct physical restraints except emergencies.",
+      "citations": [
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.128788
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.342172,
+            "width": 0.861111,
+            "height": 0.150253
+          }
+        }
+      ],
+      "category": "Current Work Status"
+    },
+    {
+      "id": "f52",
+      "label": "Accommodation Notes",
+      "value": "Employer has issued and maintained permanent modified duty offer that meets wage and restriction requirements. Primary assignment to first-floor unit to minimize stair use. Staffing patterns adjusted so employee not solely responsible for heavy physical interventions. Maintains 40 hours/week at same base pay (85-100% of pre-injury wages).",
+      "citations": [
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.513258,
+            "width": 0.754902,
+            "height": 0.011364
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.52904,
+            "width": 0.861928,
+            "height": 0.150884
+          }
+        }
+      ],
+      "category": "Current Work Status"
+    },
+    {
+      "id": "f53",
+      "label": "Employer Can Accommodate",
+      "value": "Yes",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.08415,
+            "top": 0.780934,
+            "width": 0.578431,
+            "height": 0.008207
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.842172,
+            "width": 0.861111,
+            "height": 0.068182
+          }
+        }
+      ],
+      "category": "Current Work Status"
+    },
+    {
+      "id": "f54",
+      "label": "Notes",
+      "value": "AOE/COE investigation by Field Investigation Services (FIS-24-0912-RC) dated 12/01/2024. Obtained claimant recorded statement 10/07/2024, supervisor statement (Daniel Ruiz) 09/25/2024, coworker statement (Alicia Gomez) 09/26/2024. Stairwell inspection 09/27/2024 found no defects. Security video reviewed (partially obstructed) showed resident hesitation/backward pull and employee lurch forward with handrail grab. Housekeeping logs show stairwell mopped 2pm, dry/no issues noted. Concluded mechanism consistent with acute lumbar strain and left knee injury in course of employment; supports acceptance of lumbar, left hip, left knee as industrial. Does not support separate ongoing industrial right shoulder injury or compensable psychiatric injury.",
+      "citations": [
+        {
+          "sourceId": "aoe-coe-investigation-report",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.15404
+          }
+        },
+        {
+          "sourceId": "aoe-coe-investigation-report",
+          "page": 1,
+          "bbox": {
+            "left": 0.101307,
+            "top": 0.414773,
+            "width": 0.455065,
+            "height": 0.011364
+          }
+        },
+        {
+          "sourceId": "aoe-coe-investigation-report",
+          "page": 2,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.348485,
+            "width": 0.570261,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Investigation Notes"
+    },
+    {
+      "id": "f55",
+      "label": "Is Reportable",
+      "value": "No",
+      "citations": [
+        {
+          "sourceId": "excess-and-buffer-layer-coverage-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.310606,
+            "width": 0.861111,
+            "height": 0.068182
+          }
+        }
+      ],
+      "category": "Buffer Layer Carrier"
+    },
+    {
+      "id": "f56",
+      "label": "Ratings",
+      "value": "Ortho AME Dr. Chen 06/20/2025: Lumbar spine approx 8% WPI before apportionment, reduced to 5-6% WPI after 30% apportionment; Left knee 6% WPI (100% industrial). Combined approximately 13-14% WPI post-apportionment, low-teens range. Estimated mid-teens permanent disability for reserving and PD advances.",
+      "citations": [
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.563131,
+            "width": 0.861111,
+            "height": 0.142677
+          }
+        },
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.563131,
+            "width": 0.861111,
+            "height": 0.142677
+          }
+        },
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.563131,
+            "width": 0.861111,
+            "height": 0.142677
+          }
+        }
+      ],
+      "category": "Permanent Disability"
+    },
+    {
+      "id": "f57",
+      "label": "Advances",
+      "value": "PD advances began 07/10/2025 at $290/week based on estimated PD rating. Total PD advances paid as of 12/05/2025: $5,800 over 20 weeks.",
+      "citations": [
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.512626,
+            "width": 0.861111,
+            "height": 0.15404
+          }
+        },
+        {
+          "sourceId": "td-pd-benefit-payment-history",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.75947,
+            "width": 0.593954,
+            "height": 0.011364
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.101641,
+            "width": 0.486111,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Permanent Disability"
+    },
+    {
+      "id": "f58",
+      "label": "Estimated Rating",
+      "value": "Low-to-mid-teens permanent disability range used for reserving and PD advances.",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 2,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.046717,
+            "width": 0.477941,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "ortho-ame-summary-and-pd-worksheet",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.741162,
+            "width": 0.861111,
+            "height": 0.103535
+          }
+        }
+      ],
+      "category": "Permanent Disability"
+    },
+    {
+      "id": "f59",
+      "label": "Potential",
+      "value": "No Potential",
+      "citations": [
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.155934
+          }
+        },
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.155934
+          }
+        }
+      ],
+      "category": "Subrogation / Recovery"
+    },
+    {
+      "id": "f60",
+      "label": "Description",
+      "value": "Injury occurred on employer's internal stairwell during interaction with resident. No motor vehicle involvement or outside third-party premises owner. Facility uses BrightPath Janitorial Services, but housekeeping logs show stairwell mopped by in-house staff and documented as dry. Subrogation unit review 11/30/2024 concluded fall mechanism related to resident behavior rather than premises defect or vendor negligence. No active subrogation pursuit absent new evidence.",
+      "citations": [
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.155934
+          }
+        },
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.136995,
+            "width": 0.862745,
+            "height": 0.155934
+          }
+        }
+      ],
+      "category": "Subrogation / Recovery"
+    },
+    {
+      "id": "f61",
+      "label": "Aww",
+      "value": "$900.00",
+      "citations": [
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.146465
+          }
+        },
+        {
+          "sourceId": "employment-and-wage-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.640152,
+            "width": 0.861928,
+            "height": 0.046717
+          }
+        }
+      ],
+      "category": "Temporary Disability"
+    },
+    {
+      "id": "f62",
+      "label": "Td Paid",
+      "value": "TTD paid 09/13/2024 through 02/29/2025 (24.0 weeks). Total TD paid $14,400.",
+      "citations": [
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.364899,
+            "width": 0.861111,
+            "height": 0.109848
+          }
+        },
+        {
+          "sourceId": "td-pd-benefit-payment-history",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.456439,
+            "width": 0.527778,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Temporary Disability"
+    },
+    {
+      "id": "f63",
+      "label": "Td Rate",
+      "value": "$600.00 per week",
+      "citations": [
+        {
+          "sourceId": "benefits-reserves-financial-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.146465
+          }
+        },
+        {
+          "sourceId": "employment-and-wage-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.640152,
+            "width": 0.861928,
+            "height": 0.046717
+          }
+        }
+      ],
+      "category": "Temporary Disability"
+    },
+    {
+      "id": "f64",
+      "label": "Voucher Details",
+      "value": "SJDB voucher not presently due while employee remains in permanent modified duty role with same employer. Voucher entitlement ($6,000) will be reevaluated if employment status changes.",
+      "citations": [
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.526515,
+            "width": 0.716503,
+            "height": 0.011364
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.842172,
+            "width": 0.861111,
+            "height": 0.068182
+          }
+        }
+      ],
+      "category": "Vocational Rehab / SJDB"
+    },
+    {
+      "id": "f65",
+      "label": "Voucher Entitlement",
+      "value": "No",
+      "citations": [
+        {
+          "sourceId": "employment-status-and-separation-snapshot",
+          "page": 1,
+          "bbox": {
+            "left": 0.118464,
+            "top": 0.526515,
+            "width": 0.716503,
+            "height": 0.011364
+          }
+        }
+      ],
+      "category": "Vocational Rehab / SJDB"
+    },
+    {
+      "id": "f66",
+      "label": "Body Parts",
+      "value": "Right shoulder (denied - not documented until 4+ weeks post-injury, absent from initial records, imaging showed no acute structural injury, AME unable to link to industrial event). Psychological/psychiatric (denied - Psych QME found <10% industrial contribution with predominant pre-existing causes, below compensable threshold).",
+      "citations": [
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068431,
+            "top": 0.454105,
+            "width": 0.862201,
+            "height": 0.161233
+          }
+        },
+        {
+          "sourceId": "notice-of-partial-denial-of-claim",
+          "page": 1,
+          "bbox": {
+            "left": 0.068431,
+            "top": 0.454105,
+            "width": 0.862201,
+            "height": 0.161233
+          }
+        }
+      ],
+      "category": "Non-Admitted Body Parts"
+    },
+    {
+      "id": "f67",
+      "label": "Body Parts",
+      "value": "Lumbar spine/low back, left hip, left knee (initial report); later added right shoulder and psychological",
+      "citations": [
+        {
+          "sourceId": "form-041",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.404672,
+            "width": 0.861928,
+            "height": 0.212121
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.174242,
+            "width": 0.344771,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.526515,
+            "width": 0.759804,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f68",
+      "label": "Occupation",
+      "value": "Residential Counselor / Direct care staff",
+      "citations": [
+        {
+          "sourceId": "form-041",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.173611,
+            "width": 0.861111,
+            "height": 0.111742
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.162879,
+            "width": 0.40768,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f69",
+      "label": "Injury Type",
+      "value": "Specific",
+      "citations": [
+        {
+          "sourceId": "coverage-and-employment-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.298611,
+            "width": 0.861111,
+            "height": 0.089015
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.184975,
+            "width": 0.486111,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f70",
+      "label": "Claimant Age",
+      "value": "37",
+      "citations": [
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.162879,
+            "width": 0.40768,
+            "height": 0.010101
+          }
+        },
+        {
+          "sourceId": "form-041",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.173611,
+            "width": 0.861111,
+            "height": 0.111742
+          }
+        },
+        {
+          "sourceId": "employer-s-report-of-injury-or-illness",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.316919,
+            "width": 0.861111,
+            "height": 0.133207
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f71",
+      "label": "Date Of Hire",
+      "value": "06/10/2019",
+      "citations": [
+        {
+          "sourceId": "employment-and-wage-verification",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.262626,
+            "width": 0.861111,
+            "height": 0.111111
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.261995,
+            "width": 0.470588,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f72",
+      "label": "Date Of Injury",
+      "value": "09/12/2024",
+      "citations": [
+        {
+          "sourceId": "form-041",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.404672,
+            "width": 0.861928,
+            "height": 0.212121
+          }
+        },
+        {
+          "sourceId": "adjuster-activity-log-claim-notes",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.184975,
+            "width": 0.486111,
+            "height": 0.010101
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f73",
+      "label": "Mechanism Of Injury",
+      "value": "While escorting a resident down the main stairwell at approximately 7:15 p.m., the resident abruptly stopped and pulled backward on her left arm. Employee missed a step, twisted her left foot and knee, and lurched forward, striking the left knee on the stair edge and feeling immediate low back pain. She grabbed the handrail with her right arm and did not fall fully to the landing.",
+      "citations": [
+        {
+          "sourceId": "doctor-s-first-report-of-occupational-injury-or-illness",
+          "page": 1,
+          "bbox": {
+            "left": 0.069444,
+            "top": 0.499369,
+            "width": 0.855392,
+            "height": 0.063763
+          }
+        },
+        {
+          "sourceId": "form-041",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.404672,
+            "width": 0.861928,
+            "height": 0.212121
+          }
+        }
+      ],
+      "category": "Claimed Injury Description"
+    },
+    {
+      "id": "f74",
+      "label": "Notes",
+      "value": "No contribution/reimbursement potential identified. 2018 lumbar claim with different employer (Sunrise House) was fully resolved by Stipulated Award and later C&R; no overlapping coverage periods or concurrent injuries. Apportionment of disability to prior injury handled at med-legal/PD rating level rather than through contribution. Status remains 'None' unless new coverage information emerges.",
+      "citations": [
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.328914,
+            "width": 0.862745,
+            "height": 0.135101
+          }
+        },
+        {
+          "sourceId": "subrogation-and-contribution-reimbursement-summary",
+          "page": 1,
+          "bbox": {
+            "left": 0.06781,
+            "top": 0.328914,
+            "width": 0.862745,
+            "height": 0.135101
+          }
+        }
+      ],
+      "category": "Contribution / Reimbursement"
+    },
+    {
+      "id": "f75",
+      "label": "Restrictions",
+      "value": "Per Ortho AME Dr. Chen report 06/20/2025 and PTP Dr. Nguyen: Avoid lifting/pushing/pulling >40 lbs occasionally or >25 lbs frequently; avoid repetitive/prolonged bending/stooping/squatting >1/3 of shift; limit stair use to occasional; no direct involvement in physically restraining residents except emergent situations.",
+      "citations": [
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.342172,
+            "width": 0.861111,
+            "height": 0.150253
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.342172,
+            "width": 0.861111,
+            "height": 0.150253
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.342172,
+            "width": 0.861111,
+            "height": 0.150253
+          }
+        }
+      ],
+      "category": "Permanent Work Restrictions"
+    },
+    {
+      "id": "f76",
+      "label": "Employer Offer Status",
+      "value": "Permanent modified duty offer issued 05/22/2025, effective 05/25/2025. Employee accepted offer. Employer continues to accommodate restrictions with primary assignment to first-floor unit, staffing adjustments, maintains 40 hours/week at same base pay.",
+      "citations": [
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.136995,
+            "width": 0.861111,
+            "height": 0.167298
+          }
+        },
+        {
+          "sourceId": "permanent-modified-duty-job-offer",
+          "page": 1,
+          "bbox": {
+            "left": 0.068627,
+            "top": 0.842172,
+            "width": 0.861111,
+            "height": 0.068182
+          }
+        }
+      ],
+      "category": "Permanent Work Restrictions"
+    }
+  ]
+}

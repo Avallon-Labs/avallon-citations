@@ -18,14 +18,16 @@ export default function CitationBadge({
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs rounded-full border transition-all cursor-pointer ${
+      className={`inline-flex items-center gap-1 px-1.5 py-0.5 text-[11px] rounded border transition-all cursor-pointer ${
         isActive
-          ? "bg-blue-100 border-blue-400 text-blue-700 ring-1 ring-blue-300"
-          : "bg-gray-100 border-gray-300 text-gray-600 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600"
+          ? "bg-purple-100 border-purple-300 text-purple-700"
+          : "bg-muted/50 border-border/50 text-muted-foreground hover:bg-purple-50 hover:border-purple-200 hover:text-purple-600"
       }`}
     >
       <span className="font-medium">{source.name}</span>
-      <span className="text-gray-400">p.{citation.page}</span>
+      <span className={isActive ? "text-purple-400" : "text-muted-foreground/60"}>
+        p.{citation.page}
+      </span>
     </button>
   );
 }

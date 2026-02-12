@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Extraction Viewer",
+  title: "Review Extraction",
   description: "PDF extraction viewer with citation highlighting",
 };
 

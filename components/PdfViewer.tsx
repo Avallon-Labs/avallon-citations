@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ActiveCitation } from "@/lib/types";
 import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 
@@ -29,6 +30,25 @@ export default function PdfViewer({
     width: number;
     height: number;
   } | null>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const renderTaskRef = useRef<{ cancel: () => void } | null>(null);
+
+  // Track container width so the PDF re-renders on resize (debounced)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const observer = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect.width ?? 0;
+      clearTimeout(timer);
+      timer = setTimeout(() => setContainerWidth(w), 150);
+    });
+    observer.observe(el);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   // Load PDF document when file changes
   useEffect(() => {
@@ -66,9 +86,20 @@ export default function PdfViewer({
     if (!pdfDoc) return;
     let cancelled = false;
 
+    // Cancel any in-flight pdfjs render to avoid "canvas in use" errors
+    if (renderTaskRef.current) {
+      renderTaskRef.current.cancel();
+      renderTaskRef.current = null;
+    }
+
     async function renderPage() {
       if (!pdfDoc || !canvasRef.current) return;
 
+      // Guard against stale pdfDoc when source changes — the old doc
+      // may have fewer pages than the new page number requests
+      if (page < 1 || page > pdfDoc.numPages) return;
+
+      setError(null);
       setLoading(true);
 
       try {
@@ -79,10 +110,10 @@ export default function PdfViewer({
 
         // Fit to container width
         const container = containerRef.current;
-        const containerWidth = container ? container.clientWidth - 32 : 600;
+        const cw = container ? container.clientWidth - 32 : 600;
 
         const unscaledViewport = pdfPage.getViewport({ scale: 1 });
-        const scale = containerWidth / unscaledViewport.width;
+        const scale = cw / unscaledViewport.width;
         const viewport = pdfPage.getViewport({ scale });
 
         // Use a higher-res viewport for sharp rendering
@@ -105,7 +136,11 @@ export default function PdfViewer({
           overlay.style.height = `${viewport.height}px`;
         }
 
-        await pdfPage.render({ canvas, viewport: hiResViewport }).promise;
+        const task = pdfPage.render({ canvas, viewport: hiResViewport });
+        renderTaskRef.current = task;
+
+        await task.promise;
+        renderTaskRef.current = null;
 
         if (!cancelled) {
           setRenderedDimensions({
@@ -115,18 +150,23 @@ export default function PdfViewer({
           setLoading(false);
         }
       } catch (err) {
-        if (!cancelled) {
-          setError(`Failed to render page: ${err}`);
-          setLoading(false);
-        }
+        if (cancelled) return;
+        // Ignore cancellation errors from our own cancel() calls
+        if (err instanceof Error && err.message.includes("Rendering cancelled")) return;
+        setError(`Failed to render page: ${err}`);
+        setLoading(false);
       }
     }
 
     renderPage();
     return () => {
       cancelled = true;
+      if (renderTaskRef.current) {
+        renderTaskRef.current.cancel();
+        renderTaskRef.current = null;
+      }
     };
-  }, [pdfDoc, page]);
+  }, [pdfDoc, page, containerWidth]);
 
   // Draw bbox overlay
   const drawOverlay = useCallback(() => {
@@ -167,6 +207,7 @@ export default function PdfViewer({
     if (!activeCitation || activeCitation.page !== page) return;
 
     const timer = setTimeout(() => {
+      // Keep highlight visible for 15 seconds before fading
       const overlay = overlayRef.current;
       if (!overlay || !renderedDimensions) return;
 
@@ -198,7 +239,7 @@ export default function PdfViewer({
         requestAnimationFrame(fade);
       };
       requestAnimationFrame(fade);
-    }, 2500);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [activeCitation, page, renderedDimensions]);
@@ -206,35 +247,37 @@ export default function PdfViewer({
   return (
     <div ref={containerRef} className="flex flex-col h-full">
       {/* Page navigation */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 bg-gray-50 shrink-0">
+      <div className="flex items-center justify-between px-4 py-1.5 border-b border-border bg-muted/20 shrink-0">
         <button
           onClick={() => onPageChange(Math.max(1, page - 1))}
           disabled={page <= 1}
-          className="px-3 py-1 text-sm rounded border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border border-border bg-white hover:bg-muted/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
+          <ChevronLeft className="h-3.5 w-3.5" />
           Prev
         </button>
-        <span className="text-sm text-gray-600">
+        <span className="text-xs text-muted-foreground font-medium">
           Page {page} of {pageCount}
         </span>
         <button
           onClick={() => onPageChange(Math.min(pageCount, page + 1))}
           disabled={page >= pageCount}
-          className="px-3 py-1 text-sm rounded border border-gray-300 bg-white hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md border border-border bg-white hover:bg-muted/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           Next
+          <ChevronRight className="h-3.5 w-3.5" />
         </button>
       </div>
 
       {/* PDF canvas area */}
-      <div className="flex-1 overflow-auto p-4 bg-gray-100 flex justify-center">
+      <div className="flex-1 overflow-auto p-4 bg-muted/10 flex justify-center">
         {error ? (
           <div className="text-red-500 text-sm mt-8">{error}</div>
         ) : (
           <div className="relative inline-block">
             {loading && (
               <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-10">
-                <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-purple-500 border-t-transparent rounded-full animate-spin" />
               </div>
             )}
             <canvas ref={canvasRef} className="shadow-lg bg-white" />
