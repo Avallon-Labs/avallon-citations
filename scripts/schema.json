@@ -1,0 +1,876 @@
+{
+  "type": "object",
+  "properties": {
+    "liens": {
+      "type": "object",
+      "description": "Liens",
+      "properties": {
+        "filed_liens": {
+          "type": "array",
+          "description": "List of filed liens with amounts and resolution status",
+          "x_extraction": {
+            "query": [
+              "What liens have been filed? [Provider] lien of $[X] resolved for $[Y] on [date]; No liens filed"
+            ]
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": ["string", "null"],
+                "description": "Lien amount"
+              },
+              "lienholder": {
+                "type": ["string", "null"],
+                "description": "Lienholder name"
+              },
+              "resolution_status": {
+                "type": ["string", "null"],
+                "description": "Resolution status and details"
+              }
+            },
+            "required": ["amount", "lienholder", "resolution_status"],
+            "additionalProperties": false
+          }
+        },
+        "expected_liens": {
+          "type": ["string", "null"],
+          "description": "Expected liens or other lien exposure including EDD, child support",
+          "x_extraction": {
+            "query": [
+              "Are there expected lien issues? EDD has sent notice of request for information; [Provider] has demand of $[X]"
+            ]
+          }
+        }
+      },
+      "required": ["filed_liens", "expected_liens"],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadata",
+      "properties": {
+        "date": {
+          "type": ["string", "null"],
+          "description": "Date of plan of action",
+          "x_extraction": {
+            "query": ["What is the date of this plan of action? Date:; POA dated"]
+          },
+          "format": "date"
+        },
+        "examiner": {
+          "type": ["string", "null"],
+          "description": "Examiner name/initials",
+          "x_extraction": {
+            "query": ["Who is the examiner on this claim? Examiner:; Handled by"]
+          }
+        }
+      },
+      "required": ["date", "examiner"],
+      "additionalProperties": false
+    },
+    "reserves": {
+      "type": "object",
+      "description": "Reserves",
+      "properties": {
+        "description": {
+          "type": ["string", "null"],
+          "description": "Brief description of reserves and historical changes, including items contributing significantly",
+          "x_extraction": {
+            "query": ["What are the current reserves? Outstanding reserves:; Medical reserve: $[X]"]
+          }
+        }
+      },
+      "required": ["description"],
+      "additionalProperties": false
+    },
+    "litigation": {
+      "type": "object",
+      "description": "Litigation",
+      "properties": {
+        "adj_number": {
+          "type": ["string", "null"],
+          "description": "ADJ number - adjudication case number from Workers' Compensation Appeals Board",
+          "x_extraction": {
+            "query": ["What is the ADJ number? ADJ; WCAB case number:"]
+          }
+        },
+        "is_litigated": {
+          "type": ["boolean", "null"],
+          "description": "Whether claim is litigated"
+        },
+        "legal_activity": {
+          "type": ["string", "null"],
+          "description": "Relevant hearings, depositions, trials, MSC, DOR, or other legal information",
+          "x_extraction": {
+            "query": ["What is the litigation status? Claimant's deposition is set for; MSC scheduled for"]
+          }
+        },
+        "defense_attorney": {
+          "type": ["string", "null"],
+          "description": "Defense attorney name and firm",
+          "x_extraction": {
+            "query": ["Who is the defense attorney? We are represented by [attorney] of [firm]; DA:"]
+          }
+        },
+        "applicant_attorney": {
+          "type": ["string", "null"],
+          "description": "Applicant attorney name and firm",
+          "x_extraction": {
+            "query": ["Who represents the claimant? Applicant attorney is [name] of [firm]; Claimant is represented by"]
+          }
+        },
+        "application_filed_date": {
+          "type": ["string", "null"],
+          "description": "Date application for adjudication was filed",
+          "x_extraction": {
+            "query": ["When was the application filed? Application filed on; Filed application for adjudication"]
+          },
+          "format": "date"
+        }
+      },
+      "required": ["adj_number", "is_litigated", "legal_activity", "defense_attorney", "applicant_attorney", "application_filed_date"],
+      "additionalProperties": false
+    },
+    "mmi_status": {
+      "type": "object",
+      "description": "MMI Status",
+      "properties": {
+        "is_mmi": {
+          "type": ["boolean", "null"],
+          "description": "Whether at Maximum Medical Improvement for any or all conditions"
+        },
+        "mmi_date": {
+          "type": ["string", "null"],
+          "description": "Date reached MMI/P&S",
+          "x_extraction": {
+            "query": ["When did the patient reach MMI? Found MMI on; P&S as of"]
+          },
+          "format": "date"
+        },
+        "mmi_details": {
+          "type": ["string", "null"],
+          "description": "MMI details including which body parts, which doctor, and date",
+          "x_extraction": {
+            "query": ["Has the patient reached MMI? Found MMI for all body parts by; Not MMI for"]
+          }
+        }
+      },
+      "required": ["is_mmi", "mmi_date", "mmi_details"],
+      "additionalProperties": false
+    },
+    "settlement": {
+      "type": "object",
+      "description": "Settlement",
+      "properties": {
+        "negotiations": {
+          "type": ["string", "null"],
+          "description": "Summary of negotiations including dates, offers, demands, claimant interest",
+          "x_extraction": {
+            "query": ["What are the settlement negotiations? Claimant has expressed interest in resolving; Having DA inquire about settlement interest and demand"]
+          }
+        },
+        "settlement_type": {
+          "type": ["string", "null"],
+          "description": "Type of settlement (C&R/CNR, Stipulations, etc.)",
+          "x_extraction": {
+            "query": ["What type of settlement is planned? Claim may be settled via C&R; All claims can be settled via full CNR"]
+          },
+          "enum": ["C&R", "CNR", "Compromise and Release", "Stipulations", "Stipulated Award", "Not Postured", null]
+        },
+        "authority_status": {
+          "type": ["string", "null"],
+          "description": "Authority request and approval status, including SAR status, approval date, amount",
+          "x_extraction": {
+            "query": ["What is the settlement authority status? SAR for C&R up to $[X] was approved [date]; Completing SAR for"]
+          }
+        },
+        "settlement_notes": {
+          "type": ["string", "null"],
+          "description": "Additional settlement notes including barriers to settlement, future plans",
+          "x_extraction": {
+            "query": ["What is preventing settlement? Not postured for settlement as claimant not interested; Approved for surgery, will evaluate after"]
+          }
+        },
+        "postured_for_settlement": {
+          "type": ["boolean", "null"],
+          "description": "Whether claim is in position to resolve"
+        }
+      },
+      "required": ["negotiations", "settlement_type", "authority_status", "settlement_notes", "postured_for_settlement"],
+      "additionalProperties": false
+    },
+    "medicare_msa": {
+      "type": "object",
+      "description": "Medicare / MSA",
+      "properties": {
+        "msa_details": {
+          "type": ["string", "null"],
+          "description": "MSA details including amount, CMS review threshold, completion date, claimant obligations",
+          "x_extraction": {
+            "query": ["What are the Medicare Set-Aside details? MSA completed [date] is $[amount]; CMS would review for settlement greater than $250,000"]
+          }
+        },
+        "is_beneficiary": {
+          "type": ["boolean", "null"],
+          "description": "Whether claimant is a Medicare beneficiary"
+        },
+        "reasonable_expectation": {
+          "type": ["string", "null"],
+          "description": "Notes on reasonable expectation of Medicare entitlement within 30 months",
+          "x_extraction": {
+            "query": ["Is the claimant a Medicare beneficiary? Not noted as beneficiary; Reasonable expectation of Medicare within 30 months"]
+          }
+        }
+      },
+      "required": ["msa_details", "is_beneficiary", "reasonable_expectation"],
+      "additionalProperties": false
+    },
+    "apportionment": {
+      "type": "object",
+      "description": "Apportionment",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Apportionment opinions from doctors, potential sources, and steps being taken to address apportionment",
+          "x_extraction": {
+            "query": ["Is there apportionment? Per PTP, 100% of disability is apportioned to; [X]% is apportioned to obesity"]
+          }
+        }
+      },
+      "required": ["notes"],
+      "additionalProperties": false
+    },
+    "compensability": {
+      "type": "object",
+      "description": "Compensability",
+      "properties": {
+        "status": {
+          "type": ["string", "null"],
+          "description": "Compensability status: accepted, delayed, denied, or partially accepted",
+          "x_extraction": {
+            "query": ["Has the claim been accepted, denied, or delayed? Claim accepted based on; Delayed with decision due"]
+          },
+          "enum": ["Accepted", "Delayed", "Denied", "Partially Accepted", null]
+        },
+        "decision_due_date": {
+          "type": ["string", "null"],
+          "description": "Decision due date if delayed",
+          "x_extraction": {
+            "query": ["When is the compensability decision due? Decision due date effectively; 90th day after employer knowledge"]
+          },
+          "format": "date"
+        },
+        "decision_rationale": {
+          "type": ["string", "null"],
+          "description": "Rationale for compensability decision",
+          "x_extraction": {
+            "query": ["Why was the claim accepted, denied, or delayed? Accepted based on medical evidence and no factual disputes; Denied based on no receipt of substantial medical or legal evidence"]
+          }
+        }
+      },
+      "required": ["status", "decision_due_date", "decision_rationale"],
+      "additionalProperties": false
+    },
+    "excess_carrier": {
+      "type": "object",
+      "description": "Excess Carrier",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Additional notes including SIR breach, settlement approval requirements, re-reporting instructions",
+          "x_extraction": {
+            "query": ["Are there excess carrier issues? $[X] has been paid, so any settlement of $[Y] will require excess approval; Excess closed their file and requested re-reporting at"]
+          }
+        },
+        "retention": {
+          "type": ["string", "null"],
+          "description": "Self-insured retention (SIR) level - amount employer pays before excess takes over",
+          "x_extraction": {
+            "query": ["What is the SIR level? Retention: $; SIR: $"]
+          }
+        },
+        "carrier_name": {
+          "type": ["string", "null"],
+          "description": "Name of excess insurance carrier",
+          "x_extraction": {
+            "query": ["Who is the excess carrier? Excess carrier:; Excess insurance carrier:"]
+          }
+        },
+        "is_reportable": {
+          "type": ["boolean", "null"],
+          "description": "Whether claim is reportable"
+        },
+        "reporting_level": {
+          "type": ["string", "null"],
+          "description": "Reporting level threshold - when to notify excess carrier",
+          "x_extraction": {
+            "query": ["What is the reporting level? Reporting level: $; Report when incurred amount gets to $"]
+          }
+        },
+        "reportable_reason": {
+          "type": ["string", "null"],
+          "description": "Reason claim is reportable (incurred reserves, serious injury, etc.)",
+          "x_extraction": {
+            "query": ["Why is this claim reportable? Reportable based on incurred reserves; Reportable based on occurrence involving serious injury"]
+          }
+        },
+        "date_last_reported": {
+          "type": ["string", "null"],
+          "description": "Date of last report to excess carrier",
+          "x_extraction": {
+            "query": ["When was this last reported to excess? Date last reported:; Reported to excess on"]
+          },
+          "format": "date"
+        }
+      },
+      "required": ["notes", "retention", "carrier_name", "is_reportable", "reporting_level", "reportable_reason", "date_last_reported"],
+      "additionalProperties": false
+    },
+    "iso_eams_notes": {
+      "type": "object",
+      "description": "ISO / EAMS Notes",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Summary of pertinent ISO and EAMS hits, prior claims, overlapping body parts",
+          "x_extraction": {
+            "query": ["What were the ISO and EAMS results? ISO shows an MVA; EAMS results with"]
+          }
+        }
+      },
+      "required": ["notes"],
+      "additionalProperties": false
+    },
+    "medical_status": {
+      "type": "object",
+      "description": "Medical Status",
+      "properties": {
+        "mpn_hcn_status": {
+          "type": ["string", "null"],
+          "description": "Medical Provider Network or Health Care Organization status",
+          "x_extraction": {
+            "query": ["What is the MPN or HCN status? HCO member [X] days; Within MPN"]
+          }
+        },
+        "last_visit_date": {
+          "type": ["string", "null"],
+          "description": "Date of last medical visit",
+          "x_extraction": {
+            "query": ["When was the last medical visit? Last seen on; Most recent visit:"]
+          },
+          "format": "date"
+        },
+        "next_appointment": {
+          "type": ["string", "null"],
+          "description": "Next scheduled appointment date",
+          "x_extraction": {
+            "query": ["When is the next appointment? Follow-up scheduled for; Return visit on"]
+          },
+          "format": "date"
+        },
+        "treatment_summary": {
+          "type": ["string", "null"],
+          "description": "Relevant treatment, diagnostics, medical-legal evaluations with dates. Include initial treatment, surgeries, MRIs, CTs, EMGs/NCSs, recent visits, AMEs/QMEs",
+          "x_extraction": {
+            "query": ["What treatment has been provided? Patient underwent surgery on; MRI of [body part] dated"]
+          }
+        },
+        "medical_legal_evaluations": {
+          "type": ["string", "null"],
+          "description": "QME, AME, or IME evaluations and findings",
+          "x_extraction": {
+            "query": ["Have there been any medical-legal evaluations? QME with Dr. [name] on; AME report dated"]
+          }
+        },
+        "primary_treating_physician": {
+          "type": ["string", "null"],
+          "description": "Primary treating physician name and specialty",
+          "x_extraction": {
+            "query": ["Who is the primary treating physician? Treating with Dr.; PTP:"]
+          }
+        }
+      },
+      "required": ["mpn_hcn_status", "last_visit_date", "next_appointment", "treatment_summary", "medical_legal_evaluations", "primary_treating_physician"],
+      "additionalProperties": false
+    },
+    "plan_of_action": {
+      "type": "object",
+      "description": "Plan of Action",
+      "properties": {
+        "action_items": {
+          "type": ["string", "null"],
+          "description": "Specific action items and next steps",
+          "x_extraction": {
+            "query": ["What are the next steps? Will evaluate for; Await receipt of"]
+          }
+        },
+        "next_poa_date": {
+          "type": ["string", "null"],
+          "description": "Next plan of action date or diary date",
+          "x_extraction": {
+            "query": ["When is the next plan of action due? Next POA date:; Diary date:"]
+          },
+          "format": "date"
+        },
+        "next_poa_draft": {
+          "type": "string",
+          "description": "A draft of the next plan of action for the next POA cycle. Review and cite applicable codes in the labor code chapter 408 workers compensation benefits PDF.",
+          "x_extraction": {
+            "query": []
+          }
+        },
+        "state_regulations": {
+          "type": "string",
+          "description": "The state where the claim was filed.",
+          "x_extraction": {
+            "query": []
+          }
+        }
+      },
+      "required": ["action_items", "next_poa_date", "next_poa_draft", "state_regulations"],
+      "additionalProperties": false
+    },
+    "existing_claims": {
+      "type": "object",
+      "description": "Existing Claims",
+      "properties": {
+        "prior_claims": {
+          "type": "array",
+          "description": "List of all prior open and closed claims with relevant details",
+          "x_extraction": {
+            "query": ["Are there other claims for this claimant? Prior claims:; Claimant has [X] open claims"]
+          },
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": ["string", "null"],
+                "description": "Claim status (open/closed, open FM, etc.)"
+              },
+              "pd_rating": {
+                "type": ["string", "null"],
+                "description": "PD rating if applicable"
+              },
+              "body_parts": {
+                "type": ["string", "null"],
+                "description": "Body parts involved in prior claim"
+              },
+              "claim_number": {
+                "type": ["string", "null"],
+                "description": "Prior claim number"
+              },
+              "date_of_injury": {
+                "type": ["string", "null"],
+                "description": "Date of injury for prior claim",
+                "format": "date"
+              },
+              "settlement_info": {
+                "type": ["string", "null"],
+                "description": "Settlement information if applicable"
+              }
+            },
+            "required": ["status", "pd_rating", "body_parts", "claim_number", "date_of_injury", "settlement_info"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["prior_claims"],
+      "additionalProperties": false
+    },
+    "employment_status": {
+      "type": "object",
+      "description": "Employment Status",
+      "properties": {
+        "status": {
+          "type": ["string", "null"],
+          "description": "Employment status: actively employed or separated",
+          "x_extraction": {
+            "query": ["Is the employee still working for the employer? EE was terminated; Employee remains active"]
+          },
+          "enum": ["Active", "Terminated", "Retired", "Separated", null]
+        },
+        "separation_date": {
+          "type": ["string", "null"],
+          "description": "Date of separation if applicable",
+          "x_extraction": {
+            "query": ["When did employment end? Terminated on; EE termed"]
+          },
+          "format": "date"
+        },
+        "separation_type": {
+          "type": ["string", "null"],
+          "description": "Type of separation if applicable (e.g., terminated, retired)",
+          "x_extraction": {
+            "query": ["How did employment end? Terminated due to; Employee retired"]
+          }
+        },
+        "employment_notes": {
+          "type": ["string", "null"],
+          "description": "Additional employment notes (seasonality, concurrent employment, part-time, on leave, interactive process, etc.)",
+          "x_extraction": {
+            "query": ["Are there special employment circumstances? Seasonal employee during; Part-time employment"]
+          }
+        }
+      },
+      "required": ["status", "separation_date", "separation_type", "employment_notes"],
+      "additionalProperties": false
+    },
+    "accepted_body_parts": {
+      "type": "object",
+      "description": "Accepted Body Parts",
+      "properties": {
+        "body_parts": {
+          "type": ["string", "null"],
+          "description": "Admitted/accepted body parts and conditions",
+          "x_extraction": {
+            "query": ["What body parts have been accepted? Accepted for [body parts]; We are accepting the following:"]
+          }
+        }
+      },
+      "required": ["body_parts"],
+      "additionalProperties": false
+    },
+    "coverage_employment": {
+      "type": "object",
+      "description": "Coverage & Employment",
+      "properties": {
+        "coverage_notes": {
+          "type": ["string", "null"],
+          "description": "Additional coverage and employment verification notes",
+          "x_extraction": {
+            "query": ["Are there coverage or employment issues? Partial coverage for CT; Application filed against wrong employer"]
+          }
+        },
+        "coverage_confirmed": {
+          "type": ["boolean", "null"],
+          "description": "Whether coverage existed for the date of injury",
+          "x_extraction": {
+            "query": ["Was there coverage on the date of injury? Employer was a member on; Coverage confirmed for DOI"]
+          }
+        },
+        "employee_confirmed": {
+          "type": ["boolean", "null"],
+          "description": "Whether claimant was an employee on the date of injury",
+          "x_extraction": {
+            "query": ["Was the claimant an employee on the date of injury? Claimant confirmed as employee; Employee on DOI"]
+          }
+        },
+        "member_effective_date": {
+          "type": ["string", "null"],
+          "description": "Member effective date or coverage period",
+          "x_extraction": {
+            "query": ["What was the coverage period? Member effective; Coverage from [date] to [date]"]
+          },
+          "format": "date"
+        }
+      },
+      "required": ["coverage_notes", "coverage_confirmed", "employee_confirmed", "member_effective_date"],
+      "additionalProperties": false
+    },
+    "current_work_status": {
+      "type": "object",
+      "description": "Current Work Status",
+      "properties": {
+        "work_status": {
+          "type": ["string", "null"],
+          "description": "Most recent work status including date and restrictions",
+          "x_extraction": {
+            "query": ["What is the current work status? Current work status dated [date] is; No use of [body part]"]
+          }
+        },
+        "accommodation_notes": {
+          "type": ["string", "null"],
+          "description": "Accommodation status and details",
+          "x_extraction": {
+            "query": ["Can the employer accommodate the restrictions? Employer can accommodate; Employer unable to offer accommodated work"]
+          }
+        },
+        "employer_can_accommodate": {
+          "type": ["boolean", "null"],
+          "description": "Whether employer can accommodate current restrictions"
+        }
+      },
+      "required": ["work_status", "accommodation_notes", "employer_can_accommodate"],
+      "additionalProperties": false
+    },
+    "investigation_notes": {
+      "type": "object",
+      "description": "Investigation Notes",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Investigation information regarding compensability, liability, nature and extent, red flags, surveillance, social media, witness statements, etc.",
+          "x_extraction": {
+            "query": ["What investigation has been conducted? File referred to APEX Investigations; Surveillance conducted"]
+          }
+        }
+      },
+      "required": ["notes"],
+      "additionalProperties": false
+    },
+    "buffer_layer_carrier": {
+      "type": "object",
+      "description": "Buffer Layer Carrier",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Additional buffer layer notes",
+          "x_extraction": {
+            "query": ["Are there buffer layer notes?"]
+          }
+        },
+        "retention": {
+          "type": ["string", "null"],
+          "description": "Buffer layer retention level",
+          "x_extraction": {
+            "query": ["What is the buffer layer retention? Buffer retention: $; Buffer layer: $"]
+          }
+        },
+        "is_reportable": {
+          "type": ["boolean", "null"],
+          "description": "Whether claim is reportable to buffer layer"
+        },
+        "reporting_level": {
+          "type": ["string", "null"],
+          "description": "Reporting level threshold",
+          "x_extraction": {
+            "query": ["What is the buffer reporting level? Buffer reporting level: $"]
+          }
+        },
+        "date_last_reported": {
+          "type": ["string", "null"],
+          "description": "Date of last report to buffer layer carrier",
+          "x_extraction": {
+            "query": ["When was this reported to buffer? Buffer last reported:"]
+          },
+          "format": "date"
+        }
+      },
+      "required": ["notes", "retention", "is_reportable", "reporting_level", "date_last_reported"],
+      "additionalProperties": false
+    },
+    "permanent_disability": {
+      "type": "object",
+      "description": "Permanent Disability",
+      "properties": {
+        "ratings": {
+          "type": ["string", "null"],
+          "description": "Existing PD ratings from treaters and med-legal doctors, including date, doctor, rating percentages, occupational codes, and calculation details",
+          "x_extraction": {
+            "query": ["What is the permanent disability rating? Per QME [name], [X]% PD; Considering Occupational Code [X]"]
+          }
+        },
+        "advances": {
+          "type": ["string", "null"],
+          "description": "PD advances made or planned",
+          "x_extraction": {
+            "query": ["Have PD advances been made? We have advanced PD up to; PDA issued"]
+          }
+        },
+        "estimated_rating": {
+          "type": ["string", "null"],
+          "description": "Estimated PD rating if not yet final",
+          "x_extraction": {
+            "query": ["What is the estimated PD rating? Estimate, considering occupational code; Estimated [X]% based on"]
+          }
+        }
+      },
+      "required": ["ratings", "advances", "estimated_rating"],
+      "additionalProperties": false
+    },
+    "subrogation_recovery": {
+      "type": "object",
+      "description": "Subrogation / Recovery",
+      "properties": {
+        "potential": {
+          "type": ["string", "null"],
+          "description": "Recovery/subrogation potential status",
+          "x_extraction": {
+            "query": ["Is there subrogation or recovery potential? No potential - no indication of at-fault third party; Under investigation - claimant alleges other driver at fault"]
+          },
+          "enum": ["No Potential", "Under Investigation", "Potential", "Statute Protected", "Recovery Received", null]
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "Summary of subrogation investigation, third parties, statute of limitations, referral to subrogation attorney",
+          "x_extraction": {
+            "query": ["What is the subrogation situation? Adverse party is; Other driver claims"]
+          }
+        }
+      },
+      "required": ["potential", "description"],
+      "additionalProperties": false
+    },
+    "temporary_disability": {
+      "type": "object",
+      "description": "Temporary Disability",
+      "properties": {
+        "aww": {
+          "type": ["string", "null"],
+          "description": "Average Weekly Wage",
+          "x_extraction": {
+            "query": ["What is the average weekly wage? AWW:; Average weekly wage of $"]
+          }
+        },
+        "td_paid": {
+          "type": ["string", "null"],
+          "description": "Dates TD/lost time indemnity has been paid, including TTD, TPD, waiting period details",
+          "x_extraction": {
+            "query": ["What temporary disability has been paid? TTD paid beginning [date] and on-going; TPD paid [dates]"]
+          }
+        },
+        "td_rate": {
+          "type": ["string", "null"],
+          "description": "TD rate information",
+          "x_extraction": {
+            "query": ["What is the TD rate? TD rate:; Weekly rate of $"]
+          }
+        }
+      },
+      "required": ["aww", "td_paid", "td_rate"],
+      "additionalProperties": false
+    },
+    "vocational_rehab_sjdb": {
+      "type": "object",
+      "description": "Vocational Rehab / SJDB",
+      "properties": {
+        "voucher_details": {
+          "type": ["string", "null"],
+          "description": "Voucher status, amount, usage, expiration date",
+          "x_extraction": {
+            "query": ["Is there SJDB voucher entitlement? Claimant was issued SJDB voucher in amount of $6,000; Voucher expires on [date]"]
+          }
+        },
+        "voucher_entitlement": {
+          "type": ["boolean", "null"],
+          "description": "Whether there is SJDB voucher entitlement or anticipated entitlement"
+        }
+      },
+      "required": ["voucher_details", "voucher_entitlement"],
+      "additionalProperties": false
+    },
+    "non_admitted_body_parts": {
+      "type": "object",
+      "description": "Non-Admitted Body Parts",
+      "properties": {
+        "body_parts": {
+          "type": ["string", "null"],
+          "description": "Denied, delayed, or non-admitted body parts and conditions",
+          "x_extraction": {
+            "query": ["What body parts are denied or disputed? Denied:; Disputed body parts:"]
+          }
+        }
+      },
+      "required": ["body_parts"],
+      "additionalProperties": false
+    },
+    "claimed_injury_description": {
+      "type": "object",
+      "description": "Claimed Injury Description",
+      "properties": {
+        "body_parts": {
+          "type": ["string", "null"],
+          "description": "Involved body parts",
+          "x_extraction": {
+            "query": ["What body parts are involved? Injury to [body part]; Sustaining injury to"]
+          }
+        },
+        "occupation": {
+          "type": ["string", "null"],
+          "description": "Claimant occupation/job title at time of injury",
+          "x_extraction": {
+            "query": ["What is the claimant's occupation? [age]-year-old [occupation]; Works as a"]
+          }
+        },
+        "injury_type": {
+          "type": ["string", "null"],
+          "description": "Type of injury: specific or cumulative trauma (CT)",
+          "x_extraction": {
+            "query": ["Is this a specific or cumulative trauma injury? Specific injury on; Alleges cumulative trauma"]
+          },
+          "enum": ["Specific", "Cumulative Trauma", "CT", null]
+        },
+        "claimant_age": {
+          "type": ["number", "null"],
+          "description": "Age of claimant at time of injury",
+          "x_extraction": {
+            "query": ["How old is the claimant? Patient is a [X]-year-old; [X] year old [occupation]"]
+          }
+        },
+        "date_of_hire": {
+          "type": ["string", "null"],
+          "description": "Date employee was hired",
+          "x_extraction": {
+            "query": ["When was the employee hired? Hire date:; Started employment on"]
+          },
+          "format": "date"
+        },
+        "date_of_injury": {
+          "type": ["string", "null"],
+          "description": "Date of injury or CT period",
+          "x_extraction": {
+            "query": ["When did the injury occur? Date of injury:; DOI:"]
+          },
+          "format": "date"
+        },
+        "mechanism_of_injury": {
+          "type": ["string", "null"],
+          "description": "How the injury occurred - mechanism description",
+          "x_extraction": {
+            "query": ["How did the injury occur? While [performing activity], employee; Employee was injured when"]
+          }
+        }
+      },
+      "required": ["body_parts", "occupation", "injury_type", "claimant_age", "date_of_hire", "date_of_injury", "mechanism_of_injury"],
+      "additionalProperties": false
+    },
+    "contribution_reimbursement": {
+      "type": "object",
+      "description": "Contribution / Reimbursement",
+      "properties": {
+        "notes": {
+          "type": ["string", "null"],
+          "description": "Issues regarding disputed liability amongst employers and carriers, partial coverage, concurrent employment, reimbursement potential",
+          "x_extraction": {
+            "query": ["Are there contribution or reimbursement issues? Our coverage is [X]% as pled; Concurrently employed part-time with"]
+          }
+        }
+      },
+      "required": ["notes"],
+      "additionalProperties": false
+    },
+    "permanent_work_restrictions": {
+      "type": "object",
+      "description": "Permanent Work Restrictions",
+      "properties": {
+        "restrictions": {
+          "type": ["string", "null"],
+          "description": "Type of doctor, assigning doctor, date of report, and specific restrictions",
+          "x_extraction": {
+            "query": ["What are the permanent work restrictions? Per QME Dr. [name]'s report dated [date]; Must be able to sit every 2 hours"]
+          }
+        },
+        "employer_offer_status": {
+          "type": ["string", "null"],
+          "description": "Status of employer offering permanent work or accommodation",
+          "x_extraction": {
+            "query": ["Has employer offered permanent work? Restrictions provided to employer on [date]; Await their response regarding offer"]
+          }
+        }
+      },
+      "required": ["restrictions", "employer_offer_status"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "liens", "metadata", "reserves", "litigation", "mmi_status", "settlement",
+    "medicare_msa", "apportionment", "compensability", "excess_carrier", "iso_eams_notes",
+    "medical_status", "plan_of_action", "existing_claims", "employment_status",
+    "accepted_body_parts", "coverage_employment", "current_work_status", "investigation_notes",
+    "buffer_layer_carrier", "permanent_disability", "subrogation_recovery", "temporary_disability",
+    "vocational_rehab_sjdb", "non_admitted_body_parts", "claimed_injury_description",
+    "contribution_reimbursement", "permanent_work_restrictions"
+  ],
+  "additionalProperties": false
+}

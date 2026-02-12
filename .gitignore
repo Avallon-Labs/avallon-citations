@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated pipeline data (large Reducto JSONs, markdown, etc.)
+public/data/*.reducto.json
+public/data/*.md
+public/data/sources_index.json
+public/data/extraction_raw.json
