@@ -20,3 +20,47 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* ── Data panel: animated expand/collapse via CSS grid ── */
+.fields-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fields-grid.open {
+  grid-template-rows: 1fr;
+}
+.fields-grid-inner {
+  overflow: hidden;
+}
+
+/* ── Data panel: staggered field entrance ── */
+@keyframes field-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Data panel: custom scrollbar ── */
+.data-panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.data-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.data-panel-scroll::-webkit-scrollbar-thumb {
+  background: #d4d5d9;
+  border-radius: 3px;
+}
+.data-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #b0b3ba;
+}
+.data-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d5d9 transparent;
+}
