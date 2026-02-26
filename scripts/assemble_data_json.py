@@ -62,8 +62,8 @@ def main():
         schema = json.load(f)
     print()
 
-    print("Resolving citations to bounding boxes...")
-    resolved = resolve_citations(extractions)
+    print("Resolving citations...")
+    resolved = resolve_citations(extractions, sources_index=sources)
 
     total_citations = sum(len(r["citations"]) for r in resolved)
     fields_with_citations = sum(1 for r in resolved if r["citations"])

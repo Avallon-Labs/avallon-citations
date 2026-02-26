@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { ActiveCitation } from "@/lib/types";
+import type { ActivePdfCitation } from "@/lib/types";
 import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 
 interface PdfViewerProps {
   file: string;
   page: number;
-  activeCitation: ActiveCitation | null;
+  activeCitation: ActivePdfCitation | null;
   onPageChange: (page: number) => void;
   pageCount: number;
 }

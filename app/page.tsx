@@ -2,8 +2,15 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import { Sparkles } from "lucide-react";
-import type { ExtractionData, ActiveCitation } from "@/lib/types";
+import type {
+  ExtractionData,
+  ActiveCitation,
+  Citation,
+  Source,
+} from "@/lib/types";
+import { normalizeCitation, normalizeSource } from "@/lib/types";
 import PdfViewer from "@/components/PdfViewer";
+import TextViewer from "@/components/TextViewer";
 import DataPanel from "@/components/DataPanel";
 import SourceTabs from "@/components/SourceTabs";
 import Sidebar from "@/components/Sidebar";
@@ -25,7 +32,16 @@ export default function Home() {
   useEffect(() => {
     fetch("/data/data.json")
       .then((r) => r.json())
-      .then((d: ExtractionData) => {
+      .then((raw: { sources: Record<string, unknown>[]; fields: Record<string, unknown>[] }) => {
+        // Normalize sources and citations for backward compatibility
+        const sources = raw.sources.map((s) => normalizeSource(s));
+        const fields = raw.fields.map((f: Record<string, unknown>) => ({
+          ...f,
+          citations: ((f.citations as Record<string, unknown>[]) || []).map(
+            (c) => normalizeCitation(c)
+          ),
+        })) as ExtractionData["fields"];
+        const d: ExtractionData = { sources, fields };
         setData(d);
         if (d.sources.length > 0) {
           setActiveSourceId(d.sources[0].id);
@@ -45,12 +61,39 @@ export default function Home() {
   );
 
   const handleCitationClick = useCallback(
-    (sourceId: string, page: number, bbox: ActiveCitation["bbox"]) => {
-      if (sourceId !== activeSourceId) {
-        setActiveSourceId(sourceId);
+    (citation: Citation) => {
+      if (citation.sourceId !== activeSourceId) {
+        setActiveSourceId(citation.sourceId);
       }
-      setCurrentPage(page);
-      setActiveCitation({ sourceId, page, bbox });
+      if (citation.type === "pdf") {
+        setCurrentPage(citation.page);
+        setActiveCitation({
+          type: "pdf",
+          sourceId: citation.sourceId,
+          page: citation.page,
+          bbox: citation.bbox,
+        });
+      } else if (citation.type === "text") {
+        setCurrentPage(1);
+        setActiveCitation({
+          type: "text",
+          sourceId: citation.sourceId,
+          startOffset: citation.startOffset,
+          endOffset: citation.endOffset,
+        });
+      } else {
+        setCurrentPage(1);
+        setActiveCitation({
+          type: "md",
+          sourceId: citation.sourceId,
+          snippet: citation.snippet,
+          tableIndex: citation.tableIndex,
+          startRow: citation.startRow,
+          endRow: citation.endRow,
+          startCol: citation.startCol,
+          endCol: citation.endCol,
+        });
+      }
     },
     [activeSourceId]
   );
@@ -98,6 +141,24 @@ export default function Home() {
     );
   }
 
+  // Determine viewer type for active source
+  const sourceType = activeSource?.type ?? "pdf";
+  const isTextSource = sourceType === "text" || sourceType === "csv" || sourceType === "md";
+
+  // Build viewer-specific active citation (only pass if source matches)
+  const activeViewerCitation =
+    activeCitation &&
+    activeCitation.sourceId === activeSourceId &&
+    (activeCitation.type === "text" || activeCitation.type === "md")
+      ? activeCitation
+      : null;
+
+  const activePdfCitation =
+    activeCitation?.type === "pdf" &&
+    activeCitation.sourceId === activeSourceId
+      ? activeCitation
+      : null;
+
   return (
     <div className="h-screen flex bg-white">
       {/* Sidebar */}
@@ -117,7 +178,7 @@ export default function Home() {
 
         {/* Content */}
         <div ref={contentRef} className="flex-1 flex min-h-0 relative">
-          {/* Left panel: PDF */}
+          {/* Left panel: PDF or Text viewer */}
           <div
             className="flex flex-col min-h-0 min-w-0"
             style={{ width: `${splitPercent}%` }}
@@ -129,17 +190,21 @@ export default function Home() {
             />
             {activeSource && (
               <div className="flex-1 min-h-0">
-                <PdfViewer
-                  file={activeSource.file}
-                  page={currentPage}
-                  activeCitation={
-                    activeCitation?.sourceId === activeSourceId
-                      ? activeCitation
-                      : null
-                  }
-                  onPageChange={handlePageChange}
-                  pageCount={activeSource.pageCount}
-                />
+                {isTextSource ? (
+                  <TextViewer
+                    file={activeSource.file}
+                    activeCitation={activeViewerCitation}
+                    fileType={sourceType as "text" | "csv" | "md"}
+                  />
+                ) : (
+                  <PdfViewer
+                    file={activeSource.file}
+                    page={currentPage}
+                    activeCitation={activePdfCitation}
+                    onPageChange={handlePageChange}
+                    pageCount={activeSource.pageCount}
+                  />
+                )}
               </div>
             )}
           </div>

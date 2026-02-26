@@ -20,6 +20,35 @@ export default function CitationBadge({
 
   const active = isActive || hovered;
 
+  // Build the detail label based on citation type
+  let detail: string;
+  let isSnippetStyle = false;
+  if (citation.type === "text") {
+    const snippet = citation.snippet || "";
+    detail = snippet.length > 20 ? snippet.slice(0, 20) + "…" : snippet;
+    isSnippetStyle = true;
+  } else if (citation.type === "md") {
+    if (citation.tableIndex !== undefined) {
+      const r0 = citation.startRow ?? 0;
+      const r1 = citation.endRow ?? r0;
+      const rowPart = r0 === r1 ? `r${r0}` : `r${r0}-${r1}`;
+      if (citation.startCol !== undefined) {
+        const c0 = citation.startCol;
+        const c1 = citation.endCol ?? c0;
+        const colPart = c0 === c1 ? `c${c0}` : `c${c0}-${c1}`;
+        detail = `${rowPart}:${colPart}`;
+      } else {
+        detail = r0 === r1 ? `row ${r0}` : `rows ${r0}-${r1}`;
+      }
+    } else {
+      const snippet = citation.snippet || "";
+      detail = snippet.length > 20 ? snippet.slice(0, 20) + "…" : snippet;
+      isSnippetStyle = true;
+    }
+  } else {
+    detail = `p.${citation.page}`;
+  }
+
   return (
     <button
       onClick={onClick}
@@ -64,9 +93,13 @@ export default function CitationBadge({
         style={{
           color: isActive ? "#8b5cf6" : "#9ca3af",
           fontSize: 10,
+          maxWidth: isSnippetStyle ? 120 : undefined,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
         }}
       >
-        p.{citation.page}
+        {detail}
       </span>
     </button>
   );

@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Find the best matching bounding box for a text snippet in a Reducto JSON file.
+"""Find the best matching citation for a text snippet in a source document.
+
+For PDF sources, returns a PdfCitation with bounding box coordinates.
+For markdown sources, returns an MdCitation with table region or text snippet.
 
 Usage:
     python3 scripts/find_citation.py <source_id> <text_snippet>
 
 Output (JSON):
-    {"sourceId": "...", "page": 1, "bbox": {"left": 0.07, "top": 0.16, "width": 0.41, "height": 0.01}}
+    PDF:  {"type": "pdf", "sourceId": "...", "page": 1, "bbox": {"left": 0.07, ...}}
+    MD:   {"type": "md", "sourceId": "...", "tableIndex": 0, "startRow": 1, ...}
+    Text: {"type": "md", "sourceId": "...", "snippet": "..."}
 
 If no match found:
     {"error": "no match found"}
@@ -98,7 +103,10 @@ def score_block(block_content: str, snippet: str) -> float:
 
 
 def find_citation(source_id: str, snippet: str) -> dict | None:
-    """Find the best matching block for a text snippet."""
+    """Find the best matching block for a text snippet (PDF sources).
+
+    Returns a PdfCitation dict with type="pdf".
+    """
     blocks = load_blocks(source_id)
     if not blocks:
         return None
@@ -123,6 +131,7 @@ def find_citation(source_id: str, snippet: str) -> dict | None:
 
     bbox = best_block["bbox"]
     return {
+        "type": "pdf",
         "sourceId": source_id,
         "page": bbox.get("page", 1),
         "bbox": {
@@ -134,15 +143,239 @@ def find_citation(source_id: str, snippet: str) -> dict | None:
     }
 
 
+# ── Markdown citation support ──────────────────────────────────────────
+
+
+def parse_md_tables(md_content: str) -> list[dict]:
+    """Parse GFM tables from markdown content.
+
+    Returns a list of tables, each with:
+        - rows: list of lists of cell text (including header row)
+        - start_line: line index where the table starts
+        - end_line: line index where the table ends
+    """
+    lines = md_content.split("\n")
+    tables = []
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        # A GFM table starts with a line containing | characters
+        if "|" in line and i + 1 < len(lines):
+            next_line = lines[i + 1].strip()
+            # The second line must be a separator row (e.g., |---|---|)
+            if re.match(r"^\|?[\s:]*-+[\s:]*(\|[\s:]*-+[\s:]*)*\|?\s*$", next_line):
+                # Found a table — parse all rows
+                table_start = i
+                rows = []
+                # Parse header row
+                header_cells = _parse_table_row(lines[i])
+                rows.append(header_cells)
+                # Skip separator row
+                i += 2
+                # Parse data rows
+                while i < len(lines) and "|" in lines[i]:
+                    row_cells = _parse_table_row(lines[i])
+                    if row_cells:
+                        rows.append(row_cells)
+                    else:
+                        break
+                    i += 1
+                tables.append({
+                    "rows": rows,
+                    "start_line": table_start,
+                    "end_line": i - 1,
+                })
+                continue
+        i += 1
+    return tables
+
+
+def _parse_table_row(line: str) -> list[str]:
+    """Parse a single GFM table row into cell texts."""
+    line = line.strip()
+    if line.startswith("|"):
+        line = line[1:]
+    if line.endswith("|"):
+        line = line[:-1]
+    return [cell.strip() for cell in line.split("|")]
+
+
+def find_md_citation(source_id: str, snippet: str) -> dict | None:
+    """Find snippet location in a markdown source.
+
+    Returns an MdCitation dict — either with table region info
+    (tableIndex, startRow, startCol) or just a snippet for text matches.
+    """
+    md_path = DATA_DIR / f"{source_id}.md"
+    if not md_path.exists():
+        return None
+
+    with open(md_path) as f:
+        md_content = f.read()
+
+    if not md_content or not snippet:
+        return None
+
+    sn = strip_html(snippet.strip()).lower()
+    if not sn:
+        return None
+
+    # Step 1: Search tables for the snippet
+    tables = parse_md_tables(md_content)
+    best_table_match = None
+    best_table_score = 0.0
+
+    for table_idx, table in enumerate(tables):
+        for row_idx, row in enumerate(table["rows"]):
+            for col_idx, cell in enumerate(row):
+                cell_clean = strip_html(cell.strip()).lower()
+                if not cell_clean:
+                    continue
+
+                # Exact match in cell
+                if sn in cell_clean or cell_clean in sn:
+                    coverage = min(len(sn), len(cell_clean)) / max(len(sn), len(cell_clean), 1)
+                    score = 0.5 + coverage * 0.5
+                    if score > best_table_score:
+                        best_table_score = score
+                        best_table_match = {
+                            "type": "md",
+                            "sourceId": source_id,
+                            "tableIndex": table_idx,
+                            "startRow": row_idx,
+                            "startCol": col_idx,
+                            "snippet": snippet,
+                        }
+
+                # Fuzzy match
+                matcher = SequenceMatcher(None, cell_clean, sn)
+                ratio = matcher.ratio()
+                if ratio > best_table_score and ratio >= 0.4:
+                    best_table_score = ratio * 0.49  # Cap below substring match
+                    best_table_match = {
+                        "type": "md",
+                        "sourceId": source_id,
+                        "tableIndex": table_idx,
+                        "startRow": row_idx,
+                        "startCol": col_idx,
+                        "snippet": snippet,
+                    }
+
+    # Also check if snippet spans multiple cells in a row
+    for table_idx, table in enumerate(tables):
+        for row_idx, row in enumerate(table["rows"]):
+            row_text = " ".join(strip_html(c.strip()).lower() for c in row)
+            if sn in row_text:
+                score = 0.6 + (len(sn) / max(len(row_text), 1)) * 0.3
+                if score > best_table_score:
+                    best_table_score = score
+                    best_table_match = {
+                        "type": "md",
+                        "sourceId": source_id,
+                        "tableIndex": table_idx,
+                        "startRow": row_idx,
+                        "snippet": snippet,
+                    }
+
+    if best_table_match and best_table_score >= 0.4:
+        return best_table_match
+
+    # Step 2: Search non-table text for the snippet
+    if snippet in md_content:
+        return {"type": "md", "sourceId": source_id, "snippet": snippet}
+
+    # Step 3: Case-insensitive / stripped search
+    md_lower = md_content.lower()
+    sn_lower = snippet.strip().lower()
+    if sn_lower in md_lower:
+        # Find the actual text in the original to use as snippet
+        idx = md_lower.index(sn_lower)
+        actual_snippet = md_content[idx : idx + len(sn_lower)]
+        return {"type": "md", "sourceId": source_id, "snippet": actual_snippet}
+
+    # Step 4: Fuzzy fallback — reuse existing score_block logic against table cells
+    # and non-table content
+    best_score = 0.0
+    best_result = None
+
+    # Try matching against full table rows
+    for table_idx, table in enumerate(tables):
+        for row_idx, row in enumerate(table["rows"]):
+            row_text = " | ".join(row)
+            score = score_block(row_text, snippet)
+            if score > best_score:
+                best_score = score
+                best_result = {
+                    "type": "md",
+                    "sourceId": source_id,
+                    "tableIndex": table_idx,
+                    "startRow": row_idx,
+                    "snippet": snippet,
+                }
+
+    # Try matching against non-table paragraphs
+    for paragraph in _extract_non_table_text(md_content, tables):
+        score = score_block(paragraph, snippet)
+        if score > best_score:
+            best_score = score
+            best_result = {
+                "type": "md",
+                "sourceId": source_id,
+                "snippet": snippet,
+            }
+
+    if best_result and best_score >= 0.2:
+        return best_result
+
+    return None
+
+
+def _extract_non_table_text(md_content: str, tables: list[dict]) -> list[str]:
+    """Extract paragraphs from markdown that are NOT inside tables."""
+    lines = md_content.split("\n")
+    table_lines = set()
+    for table in tables:
+        for ln in range(table["start_line"], table["end_line"] + 1):
+            table_lines.add(ln)
+
+    paragraphs = []
+    current = []
+    for i, line in enumerate(lines):
+        if i in table_lines:
+            if current:
+                paragraphs.append("\n".join(current))
+                current = []
+            continue
+        if line.strip():
+            current.append(line)
+        elif current:
+            paragraphs.append("\n".join(current))
+            current = []
+    if current:
+        paragraphs.append("\n".join(current))
+    return paragraphs
+
+
 def main():
     if len(sys.argv) < 3:
-        print(json.dumps({"error": "Usage: find_citation.py <source_id> <text_snippet>"}))
+        print(json.dumps({"error": "Usage: find_citation.py <source_id> <text_snippet> [--type pdf|md]"}))
         sys.exit(1)
 
     source_id = sys.argv[1]
     snippet = sys.argv[2]
 
-    result = find_citation(source_id, snippet)
+    # Optional --type flag to select citation finder
+    source_type = "pdf"
+    if "--type" in sys.argv:
+        idx = sys.argv.index("--type")
+        if idx + 1 < len(sys.argv):
+            source_type = sys.argv[idx + 1]
+
+    if source_type == "md":
+        result = find_md_citation(source_id, snippet)
+    else:
+        result = find_citation(source_id, snippet)
+
     if result:
         print(json.dumps(result))
     else:

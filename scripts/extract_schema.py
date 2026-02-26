@@ -32,9 +32,9 @@ PROJECT_DIR = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_DIR / "public" / "data"
 SCHEMA_PATH = SCRIPT_DIR / "schema.json"
 
-# Import find_citation for direct use (avoids subprocess overhead)
+# Import citation finders for direct use (avoids subprocess overhead)
 sys.path.insert(0, str(SCRIPT_DIR))
-from find_citation import find_citation
+from find_citation import find_citation, find_md_citation
 
 
 def get_field_type(prop: dict) -> str:
@@ -244,8 +244,18 @@ def parse_extraction_response(response_text: str) -> list[dict]:
     return data.get("extractions", [])
 
 
-def resolve_citations(extractions: list[dict]) -> list[dict]:
-    """Resolve text snippets to bounding boxes using find_citation."""
+def resolve_citations(extractions: list[dict], sources_index: list[dict] | None = None) -> list[dict]:
+    """Resolve text snippets to citations using find_citation or find_md_citation.
+
+    If sources_index is provided, routes to the appropriate citation finder
+    based on source type. Otherwise falls back to find_citation (PDF) for all.
+    """
+    # Build source type lookup
+    source_types: dict[str, str] = {}
+    if sources_index:
+        for src in sources_index:
+            source_types[src["id"]] = src.get("type", "pdf")
+
     resolved = []
     total = sum(len(e.get("citations", [])) for e in extractions)
     done = 0
@@ -259,13 +269,19 @@ def resolve_citations(extractions: list[dict]) -> list[dict]:
             if not source_id or not snippet:
                 continue
 
-            result = find_citation(source_id, snippet)
+            src_type = source_types.get(source_id, "pdf")
+
+            if src_type == "md":
+                result = find_md_citation(source_id, snippet)
+            else:
+                result = find_citation(source_id, snippet)
+
             if result and "error" not in result:
                 field_citations.append(result)
-                status = "ok"
+                status = f"ok ({result.get('type', 'pdf')})"
             else:
                 status = "no match"
-            print(f"  [{done}/{total}] {ext['field_key']}: {source_id} -> {status}")
+            print(f"  [{done}/{total}] {ext['field_key']}: {source_id} [{src_type}] -> {status}")
 
         resolved.append({
             "field_key": ext["field_key"],
@@ -344,12 +360,20 @@ def assemble_data_json(sources: list[dict], resolved: list[dict],
     """Assemble the final data.json structure for the viewer."""
     viewer_sources = []
     for src in sources:
-        viewer_sources.append({
+        entry = {
             "id": src["id"],
             "name": src["name"],
             "file": src["file"],
             "pageCount": src["pageCount"],
-        })
+        }
+        # Include type for non-PDF sources
+        src_type = src.get("type", "pdf")
+        if src_type != "pdf":
+            entry["type"] = src_type
+        # Include mdFile for markdown sources so the viewer can fetch it
+        if src.get("mdFile"):
+            entry["mdFile"] = src["mdFile"]
+        viewer_sources.append(entry)
 
     fields = []
     field_counter = 0
@@ -433,9 +457,9 @@ def main():
     extractions = parse_extraction_response(response_text)
     print(f"Extracted {len(extractions)} fields\n")
 
-    # Resolve citations to bounding boxes
-    print("Resolving citations to bounding boxes...")
-    resolved = resolve_citations(extractions)
+    # Resolve citations (routes to PDF bbox or MD citation based on source type)
+    print("Resolving citations...")
+    resolved = resolve_citations(extractions, sources_index=sources)
 
     # Count successful citations
     total_citations = sum(len(r["citations"]) for r in resolved)

@@ -1,18 +1,15 @@
 "use client";
 
 import { useMemo, useState, useCallback } from "react";
-import type { ExtractedField, Source, ActiveCitation } from "@/lib/types";
+import type { ExtractedField, Source, ActiveCitation, Citation } from "@/lib/types";
+import { citationMatches } from "@/lib/types";
 import CitationBadge from "./CitationBadge";
 
 interface DataPanelProps {
   fields: ExtractedField[];
   sources: Source[];
   activeCitation: ActiveCitation | null;
-  onCitationClick: (
-    sourceId: string,
-    page: number,
-    bbox: ActiveCitation["bbox"]
-  ) => void;
+  onCitationClick: (citation: Citation) => void;
 }
 
 interface FieldGroup {
@@ -344,7 +341,13 @@ function FieldRow({
   const hasValue = detectValueType(field.value) !== "null";
 
   const uniqueSourceCount = useMemo(() => {
-    const ids = new Set(field.citations.map((c) => `${c.sourceId}-${c.page}`));
+    const ids = new Set(
+      field.citations.map((c) => {
+        if (c.type === "pdf") return `${c.sourceId}-${c.page}`;
+        if (c.type === "text") return `${c.sourceId}-${c.startOffset}`;
+        return `${c.sourceId}-${c.snippet}-${c.tableIndex ?? "t"}`;
+      })
+    );
     return ids.size;
   }, [field.citations]);
 
@@ -438,24 +441,15 @@ function FieldRow({
 
                   const isActive =
                     activeCitation !== null &&
-                    activeCitation.sourceId === citation.sourceId &&
-                    activeCitation.page === citation.page &&
-                    activeCitation.bbox.left === citation.bbox.left &&
-                    activeCitation.bbox.top === citation.bbox.top;
+                    citationMatches(citation, activeCitation);
 
                   return (
                     <CitationBadge
-                      key={`${citation.sourceId}-${citation.page}-${idx}`}
+                      key={`${citation.sourceId}-${citation.type === "pdf" ? citation.page : citation.type === "text" ? citation.startOffset : citation.snippet}-${idx}`}
                       citation={citation}
                       source={source}
                       isActive={isActive}
-                      onClick={() =>
-                        onCitationClick(
-                          citation.sourceId,
-                          citation.page,
-                          citation.bbox
-                        )
-                      }
+                      onClick={() => onCitationClick(citation)}
                     />
                   );
                 })}
@@ -698,12 +692,8 @@ export default function DataPanel({
                         {group.fields.map((field, i) => {
                           const isFieldActive =
                             activeCitation !== null &&
-                            field.citations.some(
-                              (c) =>
-                                c.sourceId === activeCitation.sourceId &&
-                                c.page === activeCitation.page &&
-                                c.bbox.left === activeCitation.bbox.left &&
-                                c.bbox.top === activeCitation.bbox.top
+                            field.citations.some((c) =>
+                              citationMatches(c, activeCitation!)
                             );
 
                           return (
